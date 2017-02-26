@@ -63,10 +63,10 @@ The client extension will also install all dependencies that need to exist on ta
 
 
 Make sure the following packages are also installed on the target machines :
-    libffi-devel
-    gcc-c++
-    python-devel
-    krb5-devel
+- libffi-devel
+- gcc-c++
+- python-devel
+- krb5-devel
 
 Note:
 To use ahdp modules you need to configure ansible to know where the modules are located, you need simply add the library configuration to your ~/.ansible.cfg or to /etc/ansible.cfg, for instance if you have python 2.7, the modules path will be  :
