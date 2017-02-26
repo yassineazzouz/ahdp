@@ -235,7 +235,7 @@ def main():
             dest  = dict(aliases=['hdfs_path'], required=True),
             owner = dict(required=False,default=None),
             group = dict(required=False,default=None),
-            mode = dict(required=False,default=None),
+            mode = dict(required=False,default=None, type='raw'),
             replication = dict(required=False,default=None, type='int'),
             force  = dict(default=False, type='bool'),
             preserve  = dict(default=False, type='bool'),

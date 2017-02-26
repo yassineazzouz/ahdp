@@ -116,7 +116,7 @@ def download_file( hdfs_module, local_path, hdfs_path, preserve=False, owner=Non
     return dict(
         path=hpath, mode=_mode, owner=_owner, group=_group,
         seuser=None, serole=None, setype=None,
-        selevel=None, secontext=None,
+        selevel=None, attributes=None, secontext=None,
     )
 
   changed = False
@@ -150,7 +150,7 @@ def download_file( hdfs_module, local_path, hdfs_path, preserve=False, owner=Non
           tmp_file_args['path']=curpath
           changed = base_module.set_fs_attributes_if_different(tmp_file_args, changed)
         else:
-          tmp_file_args = dict( path=curpath, mode=mode, owner=owner, group=group, seuser=None, serole=None, setype=None, selevel=None, secontext=None )
+          tmp_file_args = dict( path=curpath, mode=mode, owner=owner, group=group, attributes=None, seuser=None, serole=None, setype=None, selevel=None, secontext=None )
           changed = base_module.set_fs_attributes_if_different(tmp_file_args, changed)
 
     # download the file itself
@@ -165,7 +165,7 @@ def download_file( hdfs_module, local_path, hdfs_path, preserve=False, owner=Non
       tmp_file_args['path']=local_path
       changed = base_module.set_fs_attributes_if_different(tmp_file_args, changed)
     else:
-      tmp_file_args = dict( path=local_path, mode=mode, owner=owner, group=group, seuser=None, serole=None, setype=None, selevel=None, secontext=None )
+      tmp_file_args = dict( path=local_path, mode=mode, owner=owner, group=group, attributes=None, seuser=None, serole=None, setype=None, selevel=None, secontext=None )
       changed = base_module.set_fs_attributes_if_different(tmp_file_args, changed)
 
   elif osp.isdir(osp.dirname(local_path)):
@@ -212,7 +212,7 @@ def download_file( hdfs_module, local_path, hdfs_path, preserve=False, owner=Non
       tmp_file_args['path']=local_path
       changed = base_module.set_fs_attributes_if_different(tmp_file_args, changed)
     else:
-      tmp_file_args = dict( path=local_path, mode=mode, owner=owner, group=group, seuser=None, serole=None, setype=None, selevel=None, secontext=None )
+      tmp_file_args = dict( path=local_path, mode=mode, owner=owner, group=group, attributes=None, seuser=None, serole=None, setype=None, selevel=None, secontext=None )
       changed = base_module.set_fs_attributes_if_different(tmp_file_args, changed)
   else:
     # basedir is a file does not make sense
@@ -233,7 +233,7 @@ def main():
             dest  = dict(aliases=['hdfs_path'], required=True),
             owner = dict(required=False,default=None),
             group = dict(required=False,default=None),
-            mode = dict(required=False,default=None),
+            mode = dict(required=False,default=None, type='raw'),
             force  = dict(default=False, type='bool'),
             preserve  = dict(default=False, type='bool'),
             backup  = dict(default=False, type='bool'),

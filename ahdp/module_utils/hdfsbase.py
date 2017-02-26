@@ -171,8 +171,6 @@ def kdestroy():
 class HDFSAnsibleModule(object):
 
     def __init__(self, module, bypass_checks=False,required_if=None,required_one_of_if=None,invalid_if=None):
-        file = open('/tmp/myfile.dat', 'w+')
-        file.write('This is a test\n')
         self.module = module
 
         self.file_cleanup_onfail = []
@@ -239,7 +237,7 @@ class HDFSAnsibleModule(object):
        do the clean up.
     '''
     def hdfs_fail_json(self, **kwargs):
-        #self.on_fail()
+        self.on_fail()
         self.module.fail_json(**kwargs)
 
     def cleanup_on_failure(self, path):
@@ -248,8 +246,8 @@ class HDFSAnsibleModule(object):
     def restore_on_failure(self, restore_path, backup_path):
         self.file_restore_onfail.append( (restore_path,backup_path) )
 
-#    def local_cleanup_on_failure(self, path):
-#        self.local_file_cleanup_onfail.append(path)
+    def local_cleanup_on_failure(self, path):
+        self.local_file_cleanup_onfail.append(path)
 
     def local_restore_on_failure(self, restore_path, backup_path):
         self.local_file_restore_onfail.append( (restore_path,backup_path) )
@@ -772,7 +770,7 @@ class HDFSAnsibleModule(object):
             except Exception:
                 try:
                     mode = self._symbolic_mode_to_octal(path, mode)
-                except Exception:
+                except Exception, e:
                     self.hdfs_fail_json(path=path,
                                    msg="mode must be in octal or symbolic form : %s " % mode,
                                    details=str(e))
