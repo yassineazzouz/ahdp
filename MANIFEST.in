@@ -1,0 +1,5 @@
+include README.md
+recursive-include ahdp *
+recursive-include webdocs *
+recursive-include tools *
+recursive-include examples *

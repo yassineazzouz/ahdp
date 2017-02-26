@@ -1,0 +1,10 @@
+---
+kdc_realm: "PROD.AHDP.COM"
+kdc_hdfs_princ: "hdfs@{{iam_kdc_realm}}"
+
+# hdfs is configured with HA
+nameservices:
+  - urls: "http://nn.prod.ahdp.com:50070,http://nn02.prod.ahdp.com:50070"
+    mounts: "/"
+
+hs2_server: "nn02.prod.ahdp.com"

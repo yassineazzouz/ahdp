@@ -1,0 +1,9 @@
+---
+kdc_realm: "LOCAL.AHDP.COM"
+kdc_hdfs_princ: "hdfs@{{iam_kdc_realm}}"
+
+nameservices:
+  - urls: "http://nn.local.ahdp.com:50070"
+    mounts: "/"
+
+hs2_server: "nn.local.ahdp.com"

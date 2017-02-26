@@ -1,0 +1,27 @@
+# Before you run this make sure to put the hdfs fragment in your ansible installation
+---
+- name: create local markdown doc
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    heading: 'HDFS Modules'
+  tasks:
+    - name: get docs and examples for modules
+      ansible_docstring: path="../ahdp/modules/hadoop/hdfs/"
+      register: modules
+    - name: build web/markdown hdfs docs
+      template: src=templates/ansible-docs.j2 dest=web/hdfs-modules-docs.md
+
+- name: create local markdown doc
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    heading: 'HIVE Modules'
+  tasks:
+    - name: get docs and examples for modules
+      ansible_docstring: path="../ahdp/modules/hadoop/hive/"
+      register: modules
+    - name: build web/markdown hive docs
+      template: src=templates/ansible-docs.j2 dest=web/hive-modules-docs.md

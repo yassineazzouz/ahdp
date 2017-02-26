@@ -1,0 +1,9 @@
+---
+- name: "Create a HDFS folder"
+  hdfsfile:
+    authentication: "kerberos"
+    principal: "{{kdc_hdfs_princ}}"
+    password: "{{hdfs_kerberos_password}}"
+    state: "directory"
+    path: "/user/ansible"
+    nameservices: "{{nameservices | to_json}}"

@@ -1,0 +1,3 @@
+- hosts: edges
+  roles:
+    - role: continues_tests
