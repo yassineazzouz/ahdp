@@ -77,9 +77,6 @@ library = /usr/lib/python2.7/site-packages/ahdp/modules/
 
 You can also place manually the modules in a path of your choise then set the library option to that path.
 
-Dependencies
-
-
 USAGE
 -------
 
