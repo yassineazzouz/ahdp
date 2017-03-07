@@ -1,7 +1,9 @@
+[![PyPI version](https://badge.fury.io/py/ahdp.svg)](https://badge.fury.io/py/ahdp)
+
 ahdp
 ==================================
 
-ahdp is an ansible library of modules for integration with hadoop framework, it provides a way to interact with different hadoop services in a very simple and flexible way using ansible's easy syntax. The popse of this project is to provide DevOps and platform administrators a simple way to automate their operations on large scale hadoop clusters using ansible.
+ahdp is an ansible library of modules for integration with hadoop framework, it provides a way to interact with different hadoop services in a very simple and flexible way using ansible's easy syntax. The purpose of this project is to provide DevOps and platform administrators a simple way to automate their operations on large scale hadoop clusters using ansible.
 
 Features
 ---------------
@@ -25,7 +27,7 @@ Currently ahdp provides modules to interact with HDFS through WEBHDFS or HTTPFS 
 * Ansible libraries and utilities functions for HIVE operations :
     * create and delete databases
     * Manage privileges on hive database objects.
-    * The hive modules are based on [ impyla client ](https://github.com/cloudera/impyla) project to interact with HIVE Mmetastore:
+    * The hive modules are based on [ impyla client ](https://github.com/cloudera/impyla) project to interact with HIVE Metastore:
         - Support for multiple types of authentication (Kerberos, LDAP, PLAIN, NOSASL)
         - Support for SSL
         - Works with both hive server 2 and impala daemons connections.
@@ -75,7 +77,7 @@ To use ahdp modules you need to configure ansible to know where the modules are 
 library = /usr/lib/python2.7/site-packages/ahdp/modules/
 ```
 
-You can also place manually the modules in a path of your choise then set the library option to that path.
+You can also place manually the modules in a path of your choice then set the library option to that path.
 
 USAGE
 -------
@@ -121,7 +123,7 @@ To run the playbook, simply run:
 SOME GOOD PRACTICES
 --------
 
-The folowing project aim to make hadoop administration and operation easier using ansible, below some useful tips and gidelines on how to structure a hadoop project in ansible:
+The following project aim to make hadoop administration and operation easier using ansible, below some useful tips and guidelines on how to structure a hadoop project in ansible:
 
 * Create a separate inventory group for each hadoop cluster and create separate groups for different services and roles, If you are using a cloudera distribution you can also use dynamic inventory based the [ cloudera api ] ( tools/cloudera.py ).
 * Define a gateway or edge node for each cluster to use it as target in your ansible playbooks. Make sure the ahdp project and its dependencies are installed on all edge nodes, you can also configure [ pywhdfs ](https://github.com/yassineazzouz/pywhdfs) and use its cli to interact programatically with the HDFS service.
